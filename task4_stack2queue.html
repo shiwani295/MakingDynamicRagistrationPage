@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h2>Task 4  DynamicRagistrationPage</h2>
+        <script type="text/javascript">
+    class QueueStack{
+        constructor(){
+                this.q1=[];
+                this.q2=[];  
+                console.log(this.q2); 
+    }
+    
+            /**
+             * @param {number} x
+            */
+    
+        //Function to push an element into stack using two queues.
+        push(x){
+            this.q1.push(x);
+            
+            }
+    
+            /**
+            * @returns {number}
+            */
+    
+        //Function to pop an element from stack using two queues. 
+        pop(){
+            this.q2.push(this.q1.pop())
+            return this.q2 ;
+             
+            }
+    }
+
+    var queuestack= new QueueStack;
+    queuestack.push(2);
+    queuestack.push(3);
+    queuestack.pop();
+    queuestack.push(4);
+    queuestack.pop();
+        </script>
+    </body>
+</html>
