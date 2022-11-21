@@ -1,0 +1,191 @@
+<html>
+  <head>
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <h2>Task 4 Async Await Promise</h2>
+
+    <script type="text/javascript">
+
+      //======================what youtuber does=========================================
+        // console.log("person1 : show tickets");
+        // console.log("person2 : show tickets");
+
+        //this async function return promises || this is actually a sing function because i am saving in a variable  
+        //
+
+        // const preMovie=async ()=>{
+        //     //create a promise for resolve condition 
+        //     const promiseWifeBringTickets=new Promise ((resolve,reject)=>{
+
+        //         setTimeout(()=>resolve('ticket'),3000)
+        //     });
+
+            // test --when husband or wife reject somthing 
+
+            // const promiseWifeBringTickets=new Promise ((resolve,reject)=>{
+            //     setTimeout(()=>reject('ticket'),3000)
+            //     });
+            // let ticket
+            // try{
+            //     ticket= await promiseWifeBringTickets;
+            // }catch(e){
+            //     ticket="sad face";
+            // }
+            
+
+
+        //    const getpopCorn= new Promise((resolve,reject)=>resolve('popCorn'));
+        //    const getbutter= new Promise((resolve,reject)=>resolve('butter'));
+        //    const getColdDrinks= new Promise((resolve,reject)=>resolve('colddrinks'));
+
+
+            // you can tell to the promises to execution and then wait for the next execution 
+            //now we add await in a inside the async '
+
+            //it will return the ticket of that promise            
+            //let ticket= await promiseWifeBringTickets;
+
+            // console.log(`wife: i have the ${ticket}`);
+            // console.log('husband: we should go in ');
+            // console.log('wife: ino i am hungry');
+
+            // let popCorn =await getpopCorn;
+
+            // console.log(`husband: i got some ${popCorn}`);
+            // console.log('husband: we should go in ');
+            // console.log('wife: i need butter on my popcorn');
+
+            // let butter =await getbutter;
+
+            // console.log(`husband: i got some  ${butter} on popcorn`);
+
+            // let colddrink= await getColdDrinks;
+
+            // console.log(`husband: i got ${colddrink} aswell Darling`);
+            // console.log('wife: anything else darling');
+            // console.log('wife: lets got we are getting late');
+            // console.log('husband: thank you for reminder');
+
+      //============================Promise all=============================
+
+        //    let [popCorn, butter, colddrinks] = await Promise.all([getpopCorn,getbutter,getColdDrinks]);
+
+        //    console.log(`${popCorn}, ${butter}, ${colddrinks}`);
+
+      //================================end Promise all================
+
+
+        //     return ticket;
+            
+        // }
+
+        // preMovie().then((m)=>console.log(`person3: show ${m}`));
+
+        // console.log('person4:show ticket');
+        // console.log('person6:show ticket');
+
+
+
+      //==================== startConvert Createpost delete postinto ayns await========================
+
+      const posts=[]
+      function getPosts() {
+        setTimeout(() => {
+          let output = "";
+          posts.forEach((post, index) => {
+            //output += `<li>${post.title}</li>`;
+            output += `<li>${post.title} -lastUpdate ${~~((new Date().getTime() - post.createdAt) / 1000)} seconds ago</li>`;
+          });
+          document.body.innerHTML = output;
+        }, 1000);
+      }
+
+      const createPost= async(post)=>{
+        const promiseCreateCPost=new Promise ((resolve,reject)=>{
+          setTimeout(()=>{
+            const error=false;
+            if(!error){
+              resolve(posts.push({...post, createdAt: new Date().getTime()}))
+            }else{
+              reject("something went wrong");
+            }
+          })
+        });
+
+        let postcreate= await promiseCreateCPost;
+        return postcreate;
+    
+      }
+       createPost({title:"post 1", body:"this  is third post"})
+      .then(getPosts,2000)
+      .catch((err)=>console.log(`person3: show ${err}`));
+
+      createPost({title:"post 2", body:"this  is 4 post"})
+      .then(getPosts,2000)
+      .catch((err)=>console.log(`person4: show ${err}`));
+
+      createPost({title:"post 3", body:"this  is 4 post"})
+      .then(getPosts,2000)
+      .catch((err)=>console.log(`post3: show ${err}`));
+
+
+      const deletePost= async(post)=>{
+         const promiseDeleteCPost = new Promise ((resolve,reject)=>{
+          setTimeout(()=>{
+             const error= false;
+             if (posts.length === 0) {
+              error = true;
+              }
+             if(!error){
+            resolve(posts.pop(post))
+          }else{
+            reject("something went wrong");
+          }
+         },3000)
+
+        });
+
+
+         let postDelete = await promiseDeleteCPost;
+         return postDelete;
+      }
+
+    deletePost().then(getPosts, 3000).catch((err) => console.log(err));
+    deletePost().then(getPosts, 3000).catch((err) => console.log(err))
+    deletePost().then(getPosts, 3000).catch((err) => console.log(err)).then(create4thpost,3000)
+   
+    function create4thpost(){
+      createPost({title:"post 4", body:"this  is 4 post"})
+      .then(getPosts)
+      .then(deletePost, 1000).then(getPosts,1000)
+
+    }
+  // //==================== end  Convert Createpost delete postinto ayns await========================
+
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
