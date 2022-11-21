@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <h2>Async Await Promise part 2</h2>
+
+    <script type="text/javascript">
+
+        //Q2 Write your own answer with an example
+        //ans Write all the callback ,promices and async await example
+
+        //=================callback===========================
+        function findTravelAgency(cb1,cb2,cb3){
+            console.log('first we will fist the travel agency');
+            cb1(cb2,cb3);  //here thte bookacar wull we call 
+
+        }
+        function bookacar(cb1,cb2){
+            console.log('then book a car');
+            cb1(cb2);
+        }
+        function reachkashmir(cb2){
+            console.log('reach kashmir');
+            cb2();
+            
+        }
+
+        function gotothemountains(){
+            console.log('go to the mountains');
+            
+        }
+        findTravelAgency(bookacar,reachkashmir,gotothemountains)
+        
+
+        //code is unreadable
+        //everytine need to callback so its triky to understand
+        //more code inside the function
+        //=======================end callback===================
+
+         //===================================promise =============================
+
+        //Q Why were promises discovered?
+        /*Ans - we were promise solve the problem of callback we have to call again and again cb function so sometimes its deficult  to understand the code 
+        so here we are using a process with two function resolve and reject if problem is solve the call the resolve then they have some error so call the reject 
+        function there is twp method .then() and .catch  .then() is for resolve and .catch() for reject*/
+
+        /*function purchasetavelpackage(){
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    resolve('purchace travel package for manali')
+                },2000)
+
+            })
+            
+        }
+        
+        
+        function bookacar(){
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    resolve('book a car')
+                },2000)
+
+            })
+        }
+        function reachkashmir(){
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                    resolve('reach kashmir')
+                },2000)
+
+            })
+            
+        }
+
+        function gotothemountains(){
+            return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                    //resolve('go to the mountains')
+                    reject("try next time ")
+                },2000)
+
+            })
+         }
+         */
+
+        // findTravelAgency(bookacar,reachkashmir,gotothemountains)
+        //this is not a good code create again again promise so this code is very messy  so thats by use asing await to better the code
+
+       /* purchasetavelpackage().then((msg)=>{
+            console.log(msg)
+            bookacar().then((msg1)=>{
+                console.log(msg1)
+                reachkashmir().then((msg2)=>{
+                    console.log(msg2)
+                    gotothemountains().then((msg3)=>{
+                        console.log(msg3)
+                    }).catch((err)=>console.log(err))
+
+            })
+            })
+        })
+        */
+
+         //===================================End Promise =============================
+
+        //===================================A sing Await =============================
+
+        //Q Why are async await better than promise.then design pattern? ? Explain with an example.
+        /*Ans async await alway work with Promise
+        promise.then design pattern its dificult because every .then method inside the another method and this process repeat again and again 
+        async and await is easy to understand 
+        */ 
+
+        // async function all(){
+        // try{
+        // let msg=await purchasetavelpackage();
+        // console.log(msg);
+        // let msg1=await bookacar();
+        // console.log(msg1);
+        // let msg2=await reachkashmir();
+        // console.log(msg2);
+        // let msg3=await gotothemountains();
+        // console.log(msg3);
+        // }
+        // catch(err){
+        //     console.log(err)
+        // }
+      
+        // }
+        // all();
+    </script>
